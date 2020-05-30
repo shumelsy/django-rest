@@ -1,9 +1,15 @@
-from rest_framework import generics
 from .serializers import  UserSerializer
+from .models import *
+from rest_framework import generics
+from rest_framework import mixins
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .models import *
-from rest_framework import mixins
+from django.http import HttpResponse
+
+
+def index(request, *args, **kwargs):
+    return HttpResponse('OK')
+
 
 class UserCreateView(generics.CreateAPIView):
     serializer_class = UserSerializer
@@ -24,9 +30,9 @@ class UsersListView(generics.ListAPIView):
     serializer_class = UserSerializer
 
 
-class UserDeleteView(mixins.RetrieveModelMixin, mixins.DestroyModelMixin):
+class UserDeleteView(generics.DestroyAPIView, mixins.RetrieveModelMixin, mixins.DestroyModelMixin):
     queryset = User.objects.all()
-    
+     
     def get(self, request, *args, **kwargs):
         return self.destroy(request, *args, **kwargs)
 

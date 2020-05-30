@@ -20,9 +20,10 @@ from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    url(r'^$', views.index, name='index'),
     url(r'^user/create/$', views.UserCreateView.as_view(), name="user_create"),
     url(r'^users/list/$', views.UsersListView.as_view(), name="users_list"),
     url(r'^users/(?P<pk>\d+)/detail/$', views.UserDetailView.as_view(), name="user_detail"),
     url(r'^users/(?P<pk>\d+)/update/$', views.UserUpdateView.as_view(), name="user_update"),
-    url(r'^users/(?P<pk>\d+)/delete/$', views.UserDeleteView, name="user_delete"),  
+    url(r'^users/(?P<pk>\d+)/delete/$', views.UserDeleteView.as_view(), name="user_delete"),  
 ]

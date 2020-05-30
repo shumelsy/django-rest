@@ -1,6 +1,7 @@
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.db import models
 
+
 GENDER_CHOICES = (
     ('Male', 'Male'),
     ('Female', 'Female'),
